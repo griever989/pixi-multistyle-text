@@ -6,9 +6,7 @@
  * See https://github.com/tleunen/pixi-multistyle-text for more details
  */
 (function(){
-    var root = this;
-    var PIXI = root.PIXI;
-
+var patch = function (PIXI) {
 if(!PIXI) return;
 
 /**
@@ -326,5 +324,10 @@ MultiStyleText.prototype.updateText = function()
 
 
 PIXI.MultiStyleText = MultiStyleText;
-
+};
+if (typeof module !== 'undefined') {
+    module.exports = patch;
+} else {
+    patch(this.PIXI);
+}
 }).call(this);
